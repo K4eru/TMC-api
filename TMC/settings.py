@@ -25,7 +25,7 @@ SECRET_KEY = 'qq^@^bbfy))iq5maxo7uvbttgol3=()3ik3tit(7_i2t0r4n8k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'http://tumaestrochasquilla.pythonanywhere.com',"https://ImSoHappi.github.io"]
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+CORS_ORIGIN_REGEX_WHITELIST = (
+    "http://127.0.0.1:8887",
+    "https://ImSoHappi.github.io",
+)
+
+CORS_ORIGIN_WHITELIST = (
+    "http://127.0.0.1:8887",
+    "https://ImSoHappi.github.io",
+)
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

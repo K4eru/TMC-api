@@ -3,7 +3,6 @@ from .models import Cliente, Orden, Tecnico
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
-
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
@@ -47,9 +46,4 @@ class OrdenForm(forms.ModelForm):
         model = Orden
         fields = ["folio","cliente","fecha","descripcion","tecnico"]
 
-    def clean_horaTermino(self):
-        horaTermino = self.cleaned_data['horaTermino']
-        horaInicio = self.cleaned_data['horaInicio']
-        if horaTermino is timezone.now:
-            raise ValidationError("safe")
-        return horaTermino
+    

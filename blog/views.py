@@ -1,7 +1,19 @@
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post
+from .models import Orden,Cliente,Tecnico
+from rest_framework import viewsets
+from .serializers import OrdenSerializer, ClienteSerializer, TecnicoSerializer
 
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+
+
+class OrdenesViewSet( viewsets.ModelViewSet ):
+    queryset = Orden.objects.all().order_by( 'folio' )
+    serializer_class = OrdenSerializer
+
+class ClientesViewSet( viewsets.ModelViewSet ):
+    queryset = Cliente.objects.all().order_by( 'nombre' )
+    serializer_class = ClienteSerializer
+
+class TecnicosViewSet( viewsets.ModelViewSet ):
+    queryset = Tecnico.objects.all().order_by( 'nombre' )
+    serializer_class = TecnicoSerializer
