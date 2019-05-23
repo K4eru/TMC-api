@@ -44,10 +44,10 @@ class Tecnico( models.Model ):
 
 class Orden( models.Model ):
     folio = models.AutoField( primary_key = True )
-    cliente = models.CharField( max_length = 100, blank=False, null=False )
+    cliente =models.ManyToManyField( Cliente )
     fecha = models.DateField( default= datetime.date.today, blank = False, null = False )
     descripcion = models.TextField( max_length = 200, blank = True, null = True )
-    tecnico = models.CharField( max_length = 100, blank = False, null = False)
+    tecnico =models.ManyToManyField( Tecnico )
 
     def __str__( self ):
         return str( self.folio )
